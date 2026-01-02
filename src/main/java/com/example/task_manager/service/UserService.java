@@ -20,7 +20,7 @@ public class UserService {
         return null;
     }
 
-    public void register(String username, String password) {
-        repo.save(new User(username, password));
+    public User register(User user) {
+        return repo.save(user);
     }
 }
