@@ -1,5 +1,6 @@
 package com.example.task_manager.controller;
 
+import jakarta.servlet.http.HttpSession;
 import com.example.task_manager.model.Task;
 import com.example.task_manager.service.TaskService;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,12 @@ public class TaskViewController {
     }
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, HttpSession session) {
+
+        if (session.getAttribute("user") == null) {
+            return "redirect:/login";
+        }
+
         model.addAttribute("tasks", service.getAll());
         model.addAttribute("task", new Task());
         return "index";
