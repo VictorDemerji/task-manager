@@ -1,23 +1,22 @@
 package com.example.task_manager.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users") // numele tabelului în MySQL
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // <-- asta e obligatoriu
 
+    @Column(nullable = false, unique = true)
     private String username;
 
+    @Column(nullable = false)
     private String password;
 
+    // Constructori
     public User() {}
 
     public User(String username, String password) {
@@ -25,6 +24,7 @@ public class User {
         this.password = password;
     }
 
+    // Getteri și setteri
     public Long getId() {
         return id;
     }
