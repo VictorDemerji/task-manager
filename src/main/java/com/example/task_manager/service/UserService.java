@@ -1,10 +1,17 @@
 package com.example.task_manager.service;
 import com.example.task_manager.model.User;
 import com.example.task_manager.repository.UserRepository;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     private final UserRepository repo;
 
@@ -20,7 +27,9 @@ public class UserService {
         return null;
     }
 
+    @Transactional
     public User register(User user) {
-        return repo.save(user);
+        entityManager.persist(user);
+        return user;
     }
 }
