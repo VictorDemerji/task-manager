@@ -17,45 +17,36 @@ public class Task {
 
     private boolean completed;
 
-    public Task(boolean completed, String description, String title) {
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.TO_DO;
+
+    public enum Status {
+        TO_DO,
+        IN_PROGRESS,
+        DONE
+    }
+
+    public Task() {}
+
+    public Task(boolean completed, String description, String title, Status status) {
         this.completed = completed;
         this.description = description;
         this.title = title;
+        this.status = status;
     }
 
-    public Task() {
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
 
-    public Long getId() {
-        return id;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public boolean isCompleted() { return completed; }
+    public void setCompleted(boolean completed) { this.completed = completed; }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public boolean isCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
+    public Status getStatus() { return status; }
+    public void setStatus(Status status) { this.status = status; }
 }
